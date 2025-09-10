@@ -22,7 +22,7 @@
 */
 
 // Muestra en la consola todas las obras de la lista con la
-// información completa: título, artista y fecha de creación:
+// información completa: título, authora y fecha de creación:
 
 // Desarrollo:
 
@@ -58,3 +58,53 @@ console.log('\nObras: con forEach()')
 pictures.forEach((canvas, index) => {
     console.log(`${index + 1}. Pintura: ${canvas.picture}, Autor: ${canvas.author}, Año: ${canvas.year}`)
 })
+
+
+
+// Ejercicio 02 - desafío de código
+
+/*
+    Escribe dos funciones, Image y getImage, que devuelvan
+    un nuevo objeto de imagen basado en tres argumentos dados:
+    título, autor y fecha.
+
+    La función Image es el constructor, getImage es la fábrica.
+    Usando el arreglo de datos images de la tarea anterior, crea
+    un nuevo arreglo, images1, utilizando el constructor Image 
+    (no copies los objetos, sino crea nuevos basados en las 
+    propiedades leídas).
+    
+    De manera similar, a partir de images1 crea un nuevo arreglo,
+    images2, utilizando getImage.
+    
+    Muestra el contenido de images2.
+*/
+
+// Desarrollo:
+
+// Constructor
+let ImageObj = function(picture, author, year) {
+    this.picture = picture;
+    this.author = author;
+    this.year = year;
+}
+// Fábrica
+let getImage = function(picture, author, year) {
+    return {
+        picture,
+        author,
+        year
+    };
+}
+
+let images1 = [];
+let images2 = [];
+
+pictures.forEach((canvas) => images1.push(new ImageObj(canvas.picture, canvas.author, canvas.year)));
+images1.forEach((canvas) => images2.push(getImage(canvas.picture, canvas.author, canvas.year)));
+console.log('\nimages2: con getImage()');
+images2.forEach((canvas, index) => {
+    console.log(`${index + 1}. Pintura: ${canvas.picture}, Autor: ${canvas.author}, Año: ${canvas.year}`)
+});
+
+
