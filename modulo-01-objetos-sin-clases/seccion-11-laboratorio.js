@@ -108,3 +108,75 @@ images2.forEach((canvas, index) => {
 });
 
 
+
+// Ejercicio 03 - desafío de código
+
+/*
+    Crea un objeto images que se utilizará para almacenar las imágenes.
+    El objeto debe tener una propiedad list. que será un arreglo de objetos
+    de imagen, y métodos:
+
+    - contains, que recibe como argumento el título de la imagen y devuelve
+      true si la imagen ya está en la lista (de lo contrario devuelve false).
+    - add, que recibe tres argumentos (titulo, autor y fecha), crea un nuevo
+      objeto con ellos y lo agregas a la lista (si aún no ha sido agregado).
+    - show, que muestra todas las imágenes en la lista.
+    - clear, que elimina todos los objetos de la lista.
+
+    Al crear un objeto, utiliza el constructor Image preparado en la tarea
+    anterior.
+*/
+
+// Prueba el script llamando a la secuencia:
+
+/* 
+    images.add('Mona Lisa', 'Leonardo da Vinci', 1503);
+    images.add('The Last Supper', 'Leonardo da Vinci', 1495);
+    images.add('The Starry Night', 'Vincent van Gogh', 1889);
+    images.add('Mona Lisa', 'Leonardo da Vinci', 1503);
+    images.show();
+    // -> Mona Lisa (Leonardo da Vinci, 1503)
+    // -> Last Supper (Leonardo da Vinci, 1495)
+    // -> The Starry Night (Vincent van Gogh, 1889)
+    images.clear();
+    images.show(); 
+*/
+
+// Desarrollo:
+
+let images = {
+    list: [], 
+
+    contains(picture) {
+        return this.list.some(canvas => canvas.picture === picture)
+    },
+    add(picture, author, year) {
+        if (!this.contains(picture)) {
+            this.list.push(new ImageObj(picture, author, year))
+        }
+    },
+    show() {
+        this.list.forEach(canvas => console.log(`-> ${canvas.picture} (${canvas.author}, ${canvas.year})`))
+    },
+    clear() {
+        this.list.splice(0, this.list.length);
+    }
+};
+
+
+
+// Ejemplo de prueba
+console.log(images.contains("Mona Lisa")); // false
+images.add("Mona Lisa", "Leonardo da Vinci", 1503);
+images.add("The Last Supper", "Leonardo da Vinci", 1495);
+images.add("The Starry Night", "Vincent van Gogh", 1889);
+images.add("Mona Lisa", "Leonardo da Vinci", 1503); // no se duplicará
+images.show();
+/*
+-> Mona Lisa (Leonardo da Vinci, 1503)
+-> The Last Supper (Leonardo da Vinci, 1495)
+-> The Starry Night (Vincent van Gogh, 1889)
+*/
+images.clear();
+console.log(images.list.length); // 0
+
