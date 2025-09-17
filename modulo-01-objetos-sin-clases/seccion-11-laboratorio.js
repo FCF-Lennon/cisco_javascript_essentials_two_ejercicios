@@ -164,7 +164,6 @@ let images = {
 };
 
 
-
 // Ejemplo de prueba
 console.log(images.contains("Mona Lisa")); // false
 images.add("Mona Lisa", "Leonardo da Vinci", 1503);
@@ -177,6 +176,81 @@ images.show();
 -> The Last Supper (Leonardo da Vinci, 1495)
 -> The Starry Night (Vincent van Gogh, 1889)
 */
-images.clear();
+// images.clear();
 console.log(images.list.length); // 0
+
+
+
+// Ejercicio 04 - desafío de código
+
+/*
+    Complementa el objeto images de la tarea anterior con dos nuevos 
+    métodos (sin reescribir todo el objeto):
+    
+    - edit: que recibe tres argumentos (title, artist y date) y, si
+      encuentra una imagen con el título dado en la lista, cambia sus
+      propiedades artist y date.
+    - delete: que recibe el argumento title y, si encuentra una imagen
+      con este título en la lista, la elimina (para borrar un elemento
+      de la lista, usa el método splice).
+
+    Adicionalmente, agrega un método show() al constructor Image, que 
+    mostrará la información de esa única imagen. No reescribas el constructor.
+    Para esto, utiliza prototypes. Luego, modifica el método show del objeto
+    images para que use el nuevo método show de una sola imagen y así 
+    mostrar la información.
+*/
+
+// Prueba el script llamando a la siguiente secuencia:
+
+/*
+    images.add('Mona Lisa', 'Leonardo da Vinci', 1503);
+    images.add('The Last Supper', 'Leonardo da Vinci', 1495);
+    images.add('The Starry Night', 'Vincent van Gogh', 1889);
+    images.edit('Mona Lisa', 'Leonardo da Vinci', 1504);
+    images.delete('The Last Supper');
+    images.show();
+    // -> Mona Lisa (Leonardo da Vinci, 1504)
+    // -> The Starry Night (Vincent van Gogh, 1889)
+*/
+
+
+// Desarrollo:
+
+images.edit = function(picture, author, year) {
+    let canvas = this.list.find(canvas => canvas.picture === picture);
+    if (canvas) {
+        canvas.author = author;
+        canvas.year = year;
+        return true;
+    }
+    return false;
+}
+
+images.delete = function(picture) {
+    let index = this.list.findIndex(canvas => canvas.picture === picture);
+    if (index !== -1) {
+        this.list.splice(index, 1);
+        return `La obra: ${picture}, fue eliminada.`;
+    }
+    return `La obra: ${picture}, no se encuentra en nuestros registros.`;
+}
+
+
+ImageObj.prototype.show = function() {
+    return `-> ${this.picture} (${this.author}, ${this.year})`;
+}
+
+images.show = function() {
+    this.list.forEach(canvas => console.log(canvas.show()))
+}
+
+
+let canva = 'Mona Lisa';
+images.add('Mona Lisa', 'Leonardo da Vinci', 1503);
+images.add('The Last Supper', 'Leonardo da Vinci', 1495);
+images.add('The Starry Night', 'Vincent van Gogh', 1889);
+images.edit('Mona Lisa', 'Leonardo da Vinci', 1504);
+images.delete('The Last Supper');
+images.show();
 
