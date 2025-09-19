@@ -254,3 +254,48 @@ images.edit('Mona Lisa', 'Leonardo da Vinci', 1504);
 images.delete('The Last Supper');
 images.show();
 
+
+
+// Ejercicio 05 - Desafio de código
+
+/*
+    Escribe una función deepComp, que compare dos objetos dados como
+    argumentos (comparación profunda).
+    Compara únicamente las propiedades (ignora los métodos) y considera
+    la posibilidad de anidamiento (cualquier número de niveles).
+
+    Las propiedades también pueden ser objetos y arreglos. Nos interesan
+    únicamente las propiedades disponibles durante la enumeración habitual.
+*/
+
+// Para las pruebas, utiliza el siguiente fragmento de código:
+
+let deepComp = function(objA, objB) {
+
+    let keysA = Object.keys(objA);
+    let keysB = Object.keys(objB);
+    
+    if (objA === objB) return true;
+    if (objA == null || objB == null) return objA === objB;
+    if (typeof objA !== 'object' || typeof objB !== 'object') return objA === objB;
+    if (keysA.length !== keysB.length) return false;
+
+    for (let key of keysA) {
+        if (!keysB.includes(key)) return false;
+        if (!deepComp(objA[key], objB[key])) return false;
+    }
+    return true;
+}
+
+let a = {x : [1, 2, 3, 4, 5], y : 0, z : {m : "test", n : false}};
+let b = {x : [1, 2, 3, 4, 5], y : 0, z : {m : "test", n : false}};
+let c = {x : [1, 2, 3, 4, 5, 6], y : 0, z : {m : "test", n : false}};
+let d = {x : [1, 2, 3, 4], y : 0, z : {m : "test", n : false}};
+let e = {x : [1, 2, 3, 4, 5], y : 0, z : {m : "test", n : true}};
+let f = {x : [1, 2, 3, 4, 5], y : -1, z : {m : "test", n : false}};
+
+const listObj = [b, c, d, e, f];
+
+for (const obj of listObj) {
+    console.log(deepComp(a, obj)); // -> false
+}
