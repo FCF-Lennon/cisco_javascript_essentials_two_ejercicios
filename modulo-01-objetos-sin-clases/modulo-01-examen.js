@@ -22,7 +22,7 @@
 /* 
     Opciones: 
 
-    - Se eliminará automáticamente. / Respuesta. 
+    - Se eliminará automáticamente. / Respuesta
     - Debe eliminarse usando el comando delete.  
     - Debe eliminarse asignando undefined a la variable que lo contiene. 
     - Debe eliminarse asignando null a la variable que lo contiene.  
@@ -42,7 +42,7 @@
 */
 
 // Selecciona la línea faltante correcta para que la consola muestre lo siguiente al ejecutar todo el código: 
-// Salida: Dodge Viper, color: red
+// Salida esperada: Dodge Viper, color: red
 
 /* 
     Opciones: 
@@ -215,5 +215,103 @@ console.log(`${user2.name} ${user1.age}`);
     - Dodge RAM automatic green 
     - Dodge RAM automatic 
     - Dodge Viper undefined green 
+*/
+
+
+// Pregunta 11 - Analiza el siguiente código: 
+
+/* 
+    let car1 = {
+        make: 'Dodge',
+        model: 'Viper' 
+    }
+
+    let car2 = {...car1, model:'RAM', color: 'red'};
+    car1.color = 'green';
+    console.log(`${car2.make} ${car2.model} ${car2.color}`);
+ */
+
+// ¿Qué aparecerá en la consola como resultado de la ejecución del código?
+
+/* 
+    Opciones: 
+
+    - undefined RAM red 
+    - Dodge RAM red / Respuesta
+    - Dodge RAM green
+    - Dodge Viper green
+*/
+
+
+// Pregunta 12 - Falta una línea en el siguiente código:
+
+/*
+let car = {
+    x: 100,
+    y: 100
+    // Inserta aquí la línea de código.
+}
+point.show():
+*/
+
+// Selecciona la línea faltante correcta para que la consola muestre lo 
+// siguiente al ejecutar todo el código: 100 100
+
+/* 
+    Opciones: 
+
+    - show: function() {console.log(`${this.x} ${this.y}`);} / Respuesta
+    - show: function() {console.log(`${x} ${y}`);}
+    - point.show: {console.log(`${this.x} ${this.y}`);}
+    - show: function(this) {console.log(`${this.x} ${this.y}`);}
+*/
+
+
+// Pregunta 13 - Has declarado el siguiente objeto point:
+
+/* 
+    let point = {
+        x: 100,
+        y: 100,
+        show: function() {console.log(`${this.x}:${this.y}`)}
+    }
+ */
+
+// La forma predeterminada de llamar al método show es: point.show(). 
+// Selecciona la alternativa correcta para llamar a este método:
+
+/* 
+    Opciones: 
+
+    - point.show
+    - point[show]
+    - point[show]()
+    - point['show'](); / Respuesta
+*/
+
+
+// Pregunta 14 - There is one line missing in the code below:
+
+
+    let point = {
+        x: 100,
+        y: 100,
+        // Insert line of code here.
+        set positionX(x) {this.x = x;}
+    }
+    point.positionX = 0;
+    console.log(point.x)
+
+
+// Select the correct missing line in order for the console to show 
+// the following after running the whole code: 0
+
+/* 
+    Opciones: 
+
+    - positionX : set() {this.x = x;}
+    - positionX: this.x = x
+    - set positionX(x) {this.x = x;}
+    - positionX() {this.x = x;}
 */
 
