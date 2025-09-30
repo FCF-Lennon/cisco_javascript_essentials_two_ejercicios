@@ -1,5 +1,5 @@
 
-// Questionario:
+// Cuestionario:
 
 // Pregunta 01 - Has declarado la siguiente instrucción: 
 // console.log(user.name)
@@ -12,8 +12,8 @@
 
     - let user = [name: 'Bob'];
     - let user = [name: 'Bob', age: 30];
-    - let user = {name: 'Bob', age: 30};
-    - let user = {name: 'Bob'}; / Respuesta
+    - let user = {name: 'Bob', age: 30}; / Respuesta
+    - var user = {'Bob'}; 
 */
 
 
@@ -251,7 +251,7 @@ let car = {
     y: 100
     // Inserta aquí la línea de código.
 }
-point.show():
+point.show();
 */
 
 // Selecciona la línea faltante correcta para que la consola muestre lo 
@@ -290,28 +290,154 @@ point.show():
 */
 
 
-// Pregunta 14 - There is one line missing in the code below:
+// Pregunta 14 - Falta una línea en el siguiente código: 
 
-
+/* 
     let point = {
         x: 100,
         y: 100,
-        // Insert line of code here.
-        set positionX(x) {this.x = x;}
+        // Inserta aquí la línea de código.
     }
     point.positionX = 0;
     console.log(point.x)
+ */
 
-
-// Select the correct missing line in order for the console to show 
-// the following after running the whole code: 0
+// Selecciona la línea faltante correcta para que la consola muestre 
+// lo siguiente al ejecutar todo el código: 0
 
 /* 
     Opciones: 
 
     - positionX : set() {this.x = x;}
     - positionX: this.x = x
-    - set positionX(x) {this.x = x;}
+    - set positionX(x) {this.x = x;} / Respuesta
     - positionX() {this.x = x;}
 */
 
+
+
+// Pregunta 15 - Falta una línea en el siguiente código: 
+
+/* 
+    let car = {
+        make: 'Dodge',
+        model: 'Dakota'
+    }
+
+    // Inserta aquí la línea de código.
+    Object.preventExtensions(car)
+    delete car.model;
+    car.make = 'Toyota';
+    car.color = 'red';
+ */
+    
+// Selecciona la línea faltante correcta para que la consola muestre lo 
+// siguiente después de ejecutar todo el código: Toyota undefined undefined 
+
+/* 
+    Opciones: 
+
+    - Object.preventExtensions(car); / Respuesta
+    - Una línea vacía  
+    - Object.seal(car);  
+    - Object.freeze(car);  
+*/
+
+
+// Pregunta 16 - Falta una línea en el siguiente código: 
+
+/*
+    let Car = function(make, model) { 
+        this.make = make;
+        this.model = model; 
+    }
+
+    // Inserta aquí la línea de código.
+    console.log(`${car.make} ${car.model}`); 
+*/
+
+// Selecciona la línea faltante correcta para que la consola muestre lo 
+// siguiente al ejecutar todo el código: Dodge Viper
+
+/* 
+    Opciones: 
+
+    - let car = new Car('Dodge', 'Viper');  / Respuesta
+    - let car = Car((), 'Dodge', 'Viper');  
+    - let car = Car('Dodge', 'Viper');  
+    - let car = Car({'Dodge', 'Viper'});  
+*/
+
+
+// Pregunta 17 - Falta una línea en el siguiente código:
+
+/*
+    let getCar = function(make, model) { 
+        // Inserta aquí la línea de código. 
+    }
+
+    let car = getCar('Dodge', 'Viper'); 
+    console.log(`${car.make} ${car.model}`); 
+*/
+
+// Selecciona la línea faltante correcta para que la consola muestre lo
+// siguiente al ejecutar todo el código: Dodge Viper 
+
+/* 
+    Opciones: 
+
+    - return {this.make, this.model};  
+    - return (make, model);  
+    - this.make = make; this.model = model; 
+    - return {make, model};  / Respuesta
+*/
+
+
+// Pregunta 18 - Falta una línea en el siguiente código: 
+
+/*
+    // Inserta aquí la línea de código.
+    let car = getCar('Dodge', 'Viper');
+    console.log(`${car.make} ${car.model}`);
+*/
+
+// Selecciona la línea faltante correcta para que la consola muestre lo 
+// siguiente al ejecutar todo el código: Dodge Viper
+
+/* 
+    Opciones: 
+
+    - let getCar = (make, model) => ({make, model}); / Respuesta
+    - let getCar = (make, model) => (make, model); 
+    - let getCar = (make, model) => {this.make = make; this.model = model;}; 
+    - let getCar = (make, model) => {make, model}; 
+*/
+
+
+// Pregunta 19 - Falta una línea en el siguiente código: 
+
+/*
+    let Point = function(x, y) { 
+        this.x = x;
+        this.y = y; 
+    }
+    let point = new Point(0, 0);
+    let ColorPoint = function(color) {
+        this.color = color;
+    }
+    // Inserta aquí la línea de código.
+    let cpoint = new ColorPoint('Red');
+    console.log(cpoint.x);
+*/
+
+// Selecciona la línea faltante correcta para que la consola muestre lo 
+// siguiente al ejecutar todo el código: 0
+
+/* 
+    Opciones: 
+
+    - ColorPoint.prototype = point; / Respuesta
+    - ColorPoint.prototype = Point; 
+    - cpoint.prototype = point; 
+    - cpoint = point.prototype; 
+*/
