@@ -45,7 +45,7 @@ class User {
         this.email = email;
         this.role = role;
         this.courses = [];
- 
+        this.messages = [];
     }
 }
 
@@ -67,11 +67,10 @@ User.prototype.editCourse = function(course, level) {
 }
 
 User.prototype.sendMessage = function(from, message) {
-    if (!this.messages) {
-        this.messages = [];
-    }   
+
     this.messages.push({from: from.email, to: this.email, message});
-    this.sendEmail(from.email, this.email, message);
+    sendEmail(from.email, this.email, message);
+
 }
 
 User.prototype.showMessagesHistory = function() {
@@ -84,7 +83,7 @@ User.prototype.showMessagesHistory = function() {
     });
 }
 
-User.prototype.sendEmail = function(from, to, message) {
+sendEmail = function(from, to, message) {
     // Simulate sending email
     console.log(`Email sent from ${from} to ${to}: ${message}`);
 }   
@@ -113,12 +112,17 @@ let teacher1 = new User(
         role: 'teacher'
     }
 );
-console.log(student1);
+
+// Prueba tu solución usando el siguiente código:
+
 student1.addCourse('maths', 2);
 student1.addCourse('physics', 1);
 student1.removeCourse('physics');
+console.log('\n------Ejercicio 01------')
+console.log(student1);
 teacher1.addCourse('biology', 3);
 teacher1.editCourse('biology', 4);
+console.log(teacher1);
 console.log(`${student1.name}: ${student1.courses.length} courses`); // -> Rafael: 1 courses
 console.log(`${teacher1.name}: ${teacher1.courses.length} courses`); // -> Paula: 1 courses
 teacher1.sendMessage(student1, 'test message');
@@ -126,3 +130,70 @@ teacher1.sendMessage(student1, 'another message');
 teacher1.showMessagesHistory(); 
 // -> rfife@rhyta.com -> PaulaThompkins@jourrapide.com: test message
 // -> rfife@rhyta.com -> PaulaThompkins@jourrapide.com: another message
+
+
+
+// Ejercicio 02:
+
+/*
+    Crea una nueva clase llamada ExtendedUser, que herede de la clase
+    User.
+
+    Agregar en ella un getter y un setter llamados fullName.
+
+    - El getter debe devolver el nombre y el apellido concatenados en
+      una sola cadena.
+    - El setter debe recibir el nombre y apellido concatenados (por 
+      ejemplo, 'Rafael Fifer') y dividirlos utilizando el método split(), 
+      asignando las partes correspondientes a las propiedades de nombre 
+      y apellido del objeto.
+    
+    Basándote en la clase ExtendedUser, crea dos clases adicionales:
+    Teacher y Student (ambas mediante herencia).
+    Estas clases no deben tener nuevos métodos ni propiedades, solo 
+    deben establecer roles por defecto en sus constructores.
+    
+    - 'teacher' para los profesores.
+    - 'student' para los estudiantes.
+    
+    Por tanto, sus constructores deberán recibir tres parámetros en lugar
+    de cuatro: name, surname y email.
+*/
+
+
+class ExtendedUser extends User {
+    get fullName(){
+        return `${this.name} ${this.surname}`;
+    }
+
+    set fullName(fullName) {
+        [this.name, this.surname] = fullName.split(' ');    
+    }
+}
+
+class Teacher extends ExtendedUser {
+    constructor({name, surname, email}) {
+        super({name, surname, email, role: 'teacher'})
+    }
+}
+
+class Student extends ExtendedUser {
+    constructor({name, surname, email}) {
+        super({name, surname, email, role: 'student'})
+    }
+}
+
+// Prueba tu solución usando el siguiente código:
+
+student1 = new Student({name: 'Rafael', surname: 'Fife', email: 'rfife@rhyta.com'});
+student2 = new Student({name: 'Kelly', surname: 'Estes', email: 'k_estes@dayrep.com'});
+teacher1 = new Teacher({name: 'Paula', surname: 'Thompkins', email: 'PaulaThompkins@jourrapide.com'});
+
+student1.addCourse('maths', 2);
+teacher1.addCourse('biology', 3);
+teacher1.editCourse('chemistry', 4); 
+console.log('\n------Ejercicio 02------')
+console.log(`${student1.fullName}: ${student1.courses.length} courses`); // -> Rafael Fife: 1 courses
+console.log(`${teacher1.fullName}: ${teacher1.courses.length} courses`); // -> Paula Thompkins: 2 courses
+student1.fullName = 'Rafael Fifer';
+console.log(`${student1.fullName}: ${student1.courses.length} courses`); // -> Rafael Fifer: 1 courses
