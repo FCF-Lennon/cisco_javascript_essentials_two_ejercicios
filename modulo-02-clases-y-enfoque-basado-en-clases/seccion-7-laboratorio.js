@@ -197,3 +197,70 @@ console.log(`${student1.fullName}: ${student1.courses.length} courses`); // -> R
 console.log(`${teacher1.fullName}: ${teacher1.courses.length} courses`); // -> Paula Thompkins: 2 courses
 student1.fullName = 'Rafael Fifer';
 console.log(`${student1.fullName}: ${student1.courses.length} courses`); // -> Rafael Fifer: 1 courses
+
+
+
+// Ejercicio 03:
+
+/*
+    Modifica la clase ExtendedUser (reescríbela) agregándole un método
+    llamado match.
+    El método debe recibir el objeto del profesor, el objeto del estudiante
+    y, opcionalmente, el nombre de un curso.
+
+    Su tarea es encontrar la coincidencia entre el estudiante y el profesor.
+ */
+
+// En caso de que no es proporciones el nombre del curso, el método debe
+// devolver:
+
+/*
+    - Un arreglo vacío si no hay coincidencia (es decir, si el profesor
+      no enseña los cursos en los que el estudiante está interesado, o si
+      los enseña en un nivel inferior).
+    - Un arreglo con objetos {course, level}, si el profesor enseña los 
+      cursos en los que el estudiante está interesado.
+
+    Si se pasa el nombre del curso como último argumento, entonces el método
+    debe devolver el objeto {course, level} en caso de una coincidencia 
+    correcta, o undefined en caso contrario.
+*/
+
+
+ExtendedUser.match = function(teacher, student, course) {
+    if (teacher.role !== 'teacher' || student.role !== 'student') {
+        return [];
+    }
+    let matches = [];
+    for (let studentCourse of student.courses) {
+        for (let teacherCourse of teacher.courses) {
+            if (studentCourse.name === teacherCourse.name && 
+                studentCourse.level <= teacherCourse.level) {
+                matches.push({course: studentCourse.name, level: studentCourse.level});
+            }
+        }
+    }
+    if (course) {
+        return matches.find(c => c.course === course);
+    }
+    return matches;
+}
+
+// Prueba tu solución usando el siguiente código:
+
+student1 = new Student({name: 'Rafael', surname: 'Fife', email: 'rfife@rhyta.com'});
+student2 = new Student({name: 'Kelly', surname: 'Estes', email: 'k_estes@dayrep.com'});
+teacher1 = new Teacher({name: 'Paula', surname: 'Thompkins', email: 'PaulaThompkins@jourrapide.com'});
+
+student1.addCourse('maths', 2);
+student1.addCourse('physics', 4);
+teacher1.addCourse('maths', 4);
+let match = ExtendedUser.match(teacher1, student1);
+console.log('\n------Ejercicio 03------')
+console.log(match); // -> [{course: 'maths', level: 2}]
+teacher1.editCourse('maths', 1);
+match = ExtendedUser.match(teacher1, student1);
+console.log(match); // -> []
+teacher1.addCourse('physics', 4);
+match = ExtendedUser.match(teacher1, student1, 'physics');
+console.log(match); // -> {course: 'physics', level: 4}
