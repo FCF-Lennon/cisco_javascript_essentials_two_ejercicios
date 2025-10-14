@@ -264,3 +264,164 @@ console.log(match); // -> []
 teacher1.addCourse('physics', 4);
 match = ExtendedUser.match(teacher1, student1, 'physics');
 console.log(match); // -> {course: 'physics', level: 4}
+
+
+
+// Ejercicio 04:
+
+/*
+    Intentemos reunir todos los elementos preparados anteriormente.
+    Crea una clase llamada Tutoring que contenga dos listas de usuarios:
+    una para estudiantes y otra para profesores, por separado.
+*/
+
+// Define en ella los siguientes métodos:
+
+/*
+    - getStudentByName(name, surname) → debe devolver el objeto del
+      estudiante con el nombre y apellido indicados (o undefined si el
+      estudiante no ha sido agregado previamente).
+
+    - getTeacherByName(name, surname) → debe devolver el objeto del
+      profesor con el nombre y apellido indicados (o undefined si el 
+      profesor no ha sido agregado previamente).
+
+    - getStudentsForTeacher(teacher) → debe devolver un arreglo de los
+      estudiantes que ese profesor puede tutorizar.
+
+    - getTeachersForStudent(student) → debe devolver un arreglo de los
+      profesores que pueden tutorizar a ese estudiante.
+
+    - addStudent(name, surname, email) → debe agregar un nuevo objeto 
+      de estudiante a la lista de estudiantes.
+
+    - addTeacher(name, surname, email) → debe agregar un nuevo objeto
+      de profesor a la lista de profesores.
+    
+    Usa las clases y métodos previamente preparados (por ejemplo, el 
+    método match de la clase ExtendedUser).
+*/
+
+class Tutoring {
+    constructor() {
+        this.students = [];
+        this.teachers = [];
+    }
+
+    getStudentByName(name, surname) {
+        return this.students.find(s => s.name === name && s.surname === surname);
+    }
+
+    getTeacherByName(name, surname) {
+        return this.teachers.find(t => t.name === name && t.surname === surname);
+    }
+
+    getStudentsForTeacher(teacher) {
+        return this.students.filter(student => ExtendedUser.match(teacher, student).length > 0);
+    }
+
+    getTeacherForStudent(student) {
+        return this.teachers.filter(teacher => ExtendedUser.match(teacher, student).length > 0);
+    }
+
+    addStudent(name, surname, email) {
+        const student = new Student({ name, surname, email });
+        this.students.push(student);
+        return student;
+    }
+
+    addTeacher(name, surname, email) {
+        const teacher = new Teacher({ name, surname, email });
+        this.teachers.push(teacher);
+        return teacher;
+    }
+}
+
+// Prueba tu solución usando el siguiente código:
+
+console.log('\n------ Ejercicio 04 ------');
+let tutoring = new Tutoring();
+
+tutoring.addStudent('Rafael', 'Fife', 'rfife@rhyta.com');
+tutoring.addStudent('Kelly', 'Estes', 'k_estes@dayrep.com');
+tutoring.addTeacher('Paula', 'Thompkins', 'PaulaThompkins@jourrapide.com');
+
+let student = tutoring.getStudentByName('Rafael', 'Fife');
+student.addCourse('maths', 2);
+student.addCourse('physics', 10);
+
+let teacher = tutoring.getTeacherByName('Paula', 'Thompkins');
+teacher.addCourse('maths', 4);
+
+let students = tutoring.getTeacherForStudent(student);
+let teachers = tutoring.getStudentsForTeacher(teacher);
+
+console.log(students[0]); // -> Teacher { name: 'Paula', surname: 'Thompkins', ... }
+console.log(teachers[0]); // -> Student { name: 'Rafael', surname: 'Fife', ... }
+
+student = tutoring.getStudentByName('Kelly', 'Estes');
+students = tutoring.getTeacherForStudent(student);
+teachers = tutoring.getStudentsForTeacher(teacher);
+
+console.log(students[0]); // -> undefined
+console.log(teachers[0]); // -> Student { name: 'Rafael', surname: 'Fife', ... }
+
+
+// Otra forma según Cisco:
+
+/*
+    class Tutoring {
+        constructor() {
+            this.students = [];
+            this.teachers = [];
+        }
+
+        getStudentByName(name, surname) {
+            let retVal;
+            for (let student of this.students) {
+                if (student.name === name && student.surname === surname) {
+                    retVal = student;
+                }
+            }
+            return retVal;
+        }
+
+        getTeacherByName(name, surname) {
+            let retVal;
+            for (let teacher of this.teachers) {
+                if (teacher.name === name && teacher.surname === surname) {
+                    retVal = teacher;
+                }
+            }
+            return retVal;
+        }
+
+        getStudentsForTeacher(teacher) {
+            let retVal = [];
+            for (let student of this.students) {
+                if (ExtendedUser.match(teacher, student).length) {
+                    retVal.push(student);
+                }
+            }
+            return retVal;
+        }
+
+        getTeacherForStudent(student) {
+            let retVal = [];
+            for (let teacher of this.teachers) {
+                if (ExtendedUser.match(teacher, student).length) {
+                    retVal.push(teacher);
+                }
+            }
+            return retVal;
+        }
+
+        addStudent(name, surname, email) {
+            this.students.push(new Student({ name, surname, email }));
+        }
+
+        addTeacher(name, surname, email) {
+            this.teachers.push(new Teacher({ name, surname, email }));
+        }
+    }
+*/
