@@ -425,3 +425,48 @@ console.log(teachers[0]); // -> Student { name: 'Rafael', surname: 'Fife', ... }
         }
     }
 */
+
+
+
+// Ejercicio 05:
+
+/*
+    Crea una clase ExtendedTutoring que herede de Tutoring.
+
+    Equípala con un nuevo método: sendMessages(from, to, message).
+    El argumento from representa al usuario (estudiante o profesor) que
+    envía el mensaje.
+    El argumento to es la lista de destinatarios (objetos de usuario).
+*/
+
+class ExtendedTutoring extends Tutoring {
+    constructor() {
+        super();
+    }
+
+    sendMessages(from, to, message) {
+        for (let user of to) {
+            user.sendMessage(from, message);
+        }
+        return to;
+    }
+}
+
+
+
+// Prueba tu solución utilizando el siguiente código:
+
+console.log('\n------ Ejercicio 05 ------');
+tutoring = new ExtendedTutoring();
+tutoring.addStudent('Rafael', 'Fife','rfife@rhyta.com');
+tutoring.addStudent('Kelly', 'Estes', 'k_estes@dayrep.com');
+tutoring.addTeacher('Paula', 'Thompkins', 'PaulaThompkins@jourrapide.com');
+let to = [];
+to.push(tutoring.getStudentByName('Rafael', 'Fife'));
+to.push(tutoring.getStudentByName('Kelly', 'Estes'));
+tutoring.sendMessages(tutoring.getTeacherByName('Paula', 'Thompkins'), to, 'test message');
+for(let user of to) {
+    user.showMessagesHistory();
+}
+// -> PaulaThompkins@jourrapide.com -> rfife@rhyta.com: test message
+// -> PaulaThompkins@jourrapide.com -> k_estes@dayrep.com: test message
