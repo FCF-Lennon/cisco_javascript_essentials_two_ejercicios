@@ -29,14 +29,16 @@
 
 // Pregunta 03 - Falta una línea en el siguiente código:
 
-class User {
-    // Inserta la línea de código aquí.
-    showName() {
-        console.log(this.name);
+/* 
+    class User {
+        // Inserta la línea de código aquí.
+        showName() {
+            console.log(this.name);
+        }
     }
-}
-let user = new User('Alice');
-user.showName();
+    let user = new User('Alice');
+    user.showName(); 
+*/
 
 // Selecciona la línea faltante correcta para que el código ejecutado 
 // muestre en la consola: Alice
@@ -53,9 +55,10 @@ user.showName();
 
 // Pregunta 04 - Analiza el siguiente código: 
 
-let Point = class{}; 
+/* let Point = class{}; 
 
-console.log(Point)
+console.log(Point) */
+
 // Es:
   
 /*
@@ -90,4 +93,133 @@ class A {
     - test = 10; / Respuesta    
 */
 
+
+// Pregunta 06 - Analiza el siguiente código: 
+
+/* 
+    class Point {
+        constructor (x, y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        setColor(color) {
+            this.color = color;
+        }
+    }
+    let point = new Point(100, 200);
+    point.setColor('red'); 
+*/
+
+// El objeto point:
+
+ /* 
+    Opciones: 
+    
+    - No será creado: el constructor y el método setColor hacen 
+      referencia a propiedades que no han sido definidas en el cuerpo 
+      de la clase. 
+    - Tiene tres propiedades: x, y y color. / Respuesta
+    - Tiene dos propiedades: x e y (solo estas están definidas en el 
+      constructor). 
+    - No será creado: setColor hace referencia a una propiedad color 
+      que no fue definida en el constructor. 
+*/
+ 
+
+// Pregunta 07 - Analiza el siguiente código:
+  
+/* 
+    class Point {
+    name = 'Point'; 
+    constructor (x, y) { 
+            this.x = x;
+            this.y = y;
+        }
+
+        setColor(color) {
+            this.color = color;
+        }
+    }
+    let point = new Point(100, 200);
+    point.setColor('red'); 
+*/
+
+// ¿Cuáles de las siguientes propiedades tendrá el objeto point? 
+
+ /* 
+    Opciones: 
+    
+    - name x y  
+    - name  
+    - x y  
+    - name x y color / Respuesta
+*/
+
+
+// Pregunta 08 - Falta una línea en el siguiente código: 
+  
+/* 
+    class User { 
+    // Inserta la línea de código aquí.
+    get name() {return this.#name;}
+    }
+    let point = new User();
+    point.x = 10; 
+*/
+
+// Selecciona la línea faltante correcta para insertar una declaración 
+// de propiedad privada en el código: 
+
+ /* 
+    Opciones: 
+    
+    - #name = 'Bob'; / Respuesta
+    - private name = 'Bob';  
+    - name = 'Bob'; 
+    - this.name = 'Bob';  
+*/
+
+
+// Pregunta 09 - Analiza el siguiente código:  
+  
+class Point {  
+    #x = 0;
+    #y = 0;
+    color = 'red';
+}
+let point = new Point();
+console.log(Object.keys(point));
+
+// ¿Qué aparecerá en la consola como resultado de la ejecución del código?
+
+ /* 
+    Opciones: 
+    
+    - []  
+    - ['#x', '#y', 'color']  
+    - ['x', 'y', 'color']  
+    - ['color'] / Respuesta 
+*/
+
+// Nota: Object.keys() solo devuelve propiedades públicas enumerables.
+// Las propiedades privadas #x y #y no aparecen.
+
+
+// Pregunta 10 - Analiza el siguiente código:   
+  
+class User {};
+user = new User(); 
+console.log(`${user instanceof User} ${typeof(user)}`);
+
+// ¿Qué aparecerá en la consola como resultado de la ejecución del código? 
+
+ /* 
+    Opciones: 
+    
+    - User object 
+    - true object  / Respuesta
+    - User User   
+    - true User 
+*/
 
