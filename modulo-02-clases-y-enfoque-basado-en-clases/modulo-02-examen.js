@@ -208,9 +208,11 @@ console.log(Object.keys(point));
 
 // Pregunta 10 - Analiza el siguiente código:   
   
-class User {};
-user = new User(); 
-console.log(`${user instanceof User} ${typeof(user)}`);
+/* 
+    class User {};
+    user = new User(); 
+    console.log(`${user instanceof User} ${typeof(user)}`); 
+*/
 
 // ¿Qué aparecerá en la consola como resultado de la ejecución del código? 
 
@@ -221,5 +223,55 @@ console.log(`${user instanceof User} ${typeof(user)}`);
     - true object  / Respuesta
     - User User   
     - true User 
+*/
+
+
+// Pregunta 11 - Analiza el siguiente código:    
+  
+/* 
+    class User {
+        constructor(firstName, lastName) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+        }
+        get fullName()  {return `${this.firstName} ${this.lastName}`}
+    }
+    let user = new User('Bob',  'Marley');
+*/
+
+// Selecciona el comando correcto para que la consola muestre la siguiente cadena
+// después de ejecutar todo el código: Bob Marley
+  
+ /* 
+    Opciones: 
+    
+    - console.log(user.getfullName); 
+    - console.log(user.fullName); / Respuesta   
+    - console.log(user.fullName());    
+    - console.log(user['get fullName']);  
+*/
+
+
+// Pregunta 12 - Falta una línea en el siguiente código:     
+  
+class User {
+    _name = 'Alice';
+    // Inserta aquí la línea de código.
+    set name(val) {this._name = val;} 
+}
+let user = new User();
+user.name = 'Bob';
+console.log(user._name);
+
+// Selecciona la línea faltante correcta para que la consola muestre lo siguiente
+// después de ejecutar todo el código: Bob 
+  
+ /* 
+    Opciones: 
+    
+    - set name(val) {this._name = val;} / Respuesta
+    - set (name) {this._name = name;}     
+    - set._name(name) {this._name = name;}     
+    - _name set(name) {this._name = name;} 
 */
 
