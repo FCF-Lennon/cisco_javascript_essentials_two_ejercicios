@@ -27,6 +27,7 @@
 */
 
 
+
 // Pregunta 03 - Falta una línea en el siguiente código:
 
 /* 
@@ -53,6 +54,7 @@
 */
 
 
+
 // Pregunta 04 - Analiza el siguiente código: 
 
 /* let Point = class{}; 
@@ -75,11 +77,14 @@ console.log(Point) */
 */
 
 
+
 // Pregunta 05 - Falta una línea en el siguiente código:  
 
-class A {
-    // Inserta la línea de código aquí. 
-}
+/* 
+    class A {
+        // Inserta la línea de código aquí. 
+    } 
+*/
 
 // Selecciona la línea faltante correcta para declarar una propiedad 
 // llamada test e inicializarla con el valor 10: 
@@ -92,6 +97,7 @@ class A {
     - test: 10;     
     - test = 10; / Respuesta    
 */
+
 
 
 // Pregunta 06 - Analiza el siguiente código: 
@@ -127,6 +133,7 @@ class A {
 */
  
 
+
 // Pregunta 07 - Analiza el siguiente código:
   
 /* 
@@ -157,6 +164,7 @@ class A {
 */
 
 
+
 // Pregunta 08 - Falta una línea en el siguiente código: 
   
 /* 
@@ -181,6 +189,7 @@ class A {
 */
 
 
+
 // Pregunta 09 - Analiza el siguiente código:  
   
 class Point {  
@@ -191,7 +200,8 @@ class Point {
 let point = new Point();
 console.log(Object.keys(point));
 
-// ¿Qué aparecerá en la consola como resultado de la ejecución del código?
+// ¿Qué aparecerá en la consola como resultado de la ejecución del 
+// código?
 
  /* 
     Opciones: 
@@ -206,6 +216,7 @@ console.log(Object.keys(point));
 // Las propiedades privadas #x y #y no aparecen.
 
 
+
 // Pregunta 10 - Analiza el siguiente código:   
   
 /* 
@@ -214,7 +225,8 @@ console.log(Object.keys(point));
     console.log(`${user instanceof User} ${typeof(user)}`); 
 */
 
-// ¿Qué aparecerá en la consola como resultado de la ejecución del código? 
+// ¿Qué aparecerá en la consola como resultado de la ejecución del 
+// código? 
 
  /* 
     Opciones: 
@@ -224,6 +236,7 @@ console.log(Object.keys(point));
     - User User   
     - true User 
 */
+
 
 
 // Pregunta 11 - Analiza el siguiente código:    
@@ -239,8 +252,8 @@ console.log(Object.keys(point));
     let user = new User('Bob',  'Marley');
 */
 
-// Selecciona el comando correcto para que la consola muestre la siguiente cadena
-// después de ejecutar todo el código: Bob Marley
+// Selecciona el comando correcto para que la consola muestre la 
+// siguiente cadena después de ejecutar todo el código: Bob Marley
   
  /* 
     Opciones: 
@@ -254,17 +267,19 @@ console.log(Object.keys(point));
 
 // Pregunta 12 - Falta una línea en el siguiente código:     
   
-class User {
-    _name = 'Alice';
-    // Inserta aquí la línea de código.
-    set name(val) {this._name = val;} 
-}
-let user = new User();
-user.name = 'Bob';
-console.log(user._name);
+/* 
+    class User {
+        _name = 'Alice';
+        // Inserta aquí la línea de código.
+        set name(val) {this._name = val;} 
+    }
+    let user = new User();
+    user.name = 'Bob';
+    console.log(user._name); 
+*/
 
-// Selecciona la línea faltante correcta para que la consola muestre lo siguiente
-// después de ejecutar todo el código: Bob 
+// Selecciona la línea faltante correcta para que la consola muestre 
+// lo siguiente después de ejecutar todo el código: Bob 
   
  /* 
     Opciones: 
@@ -275,3 +290,137 @@ console.log(user._name);
     - _name set(name) {this._name = name;} 
 */
 
+
+
+// Pregunta 13 - Falta una línea en el siguiente código: 
+  
+/* 
+    class A {
+        test1() { return 'A'; }
+    }
+
+    // Inserta aquí la línea de código.
+        test2() { return 'B'; }
+    }
+
+    let b = new B();
+    console.log(`${b.test1()} ${b.test2()}`); 
+*/
+
+// Selecciona la línea faltante correcta para que la consola muestre lo 
+// siguiente después de ejecutar todo el código: A B
+  
+/* 
+    Opciones: 
+    
+    - B inherits A { 
+    - class B extends A { /Respuesta     
+    - class A extends B {      
+    - A inherits B {  
+*/
+
+
+
+// Pregunta 14 - Analiza el siguiente código:
+ 
+class User {};
+class EUser extends User {};
+class EEUser extends EUser {};
+let eeuser = new EEUser();
+console.log(`${eeuser instanceof User} ${eeuser instanceof EUser} ${eeuser instanceof EEUser}`);
+
+// ¿Qué aparecerá en la consola como resultado de la ejecución del 
+// código? 
+  
+/* 
+    Opciones: 
+    
+    - false false true 
+    - true true true  / Respuesta    
+    - false false false       
+    - true false false   
+*/
+
+
+
+// Pregunta 15 - Analiza el siguiente código:
+ 
+/* 
+    class A {
+        getName() {
+            return 'A';
+        }
+    }
+
+    class B extends A {
+        getName() {
+            return 'B';
+        }
+        test(x) {
+            return x ? this.getName() : super.getName();
+        }
+    }
+
+    let b = new B();
+    console.log(`${b.test(true)} ${b.test(false)}`); 
+*/
+
+// ¿Qué aparecerá en la consola como resultado de la ejecución del 
+// código? 
+  
+/* 
+    Opciones: 
+    
+    - B B  
+    - A B       
+    - A A        
+    - B A / Respuesta   
+*/
+
+
+
+// Pregunta 16 - Falta una línea en el siguiente código: 
+ 
+class A {
+    constructor(val) {
+        console.log(`A: ${val}`);
+    }
+}
+
+class B extends A {
+    constructor(val) {
+        // Inserta aquí la línea de código.
+        console.log(`B: ${val}`);
+    }
+}
+
+let b = new B(10);
+
+// Selecciona la línea faltante correcta para que la ejecución del código 
+// muestre en consola lo siguiente: A:10, B:10 
+  
+/* 
+    Opciones: 
+    
+    - super(val); / Respuesta   
+    - this = new A(val);        
+    - A(val);     
+    - Una línea vacía     
+*/
+
+
+
+// Pregunta 17 - Un método estático definido en una clase: 
+
+/* 
+    Opciones: 
+    
+    - Es invisible solo en el objeto creado a partir de la clase y puede
+      ser llamado arbitrariamente en ese objeto.    
+    - Es invisible tanto en la clase como en el objeto creado a partir 
+      de ella (puede ser llamado en ambos).         
+    - Está ligado únicamente a la clase y no estará disponible en el 
+      objeto creado a partir de ella. / Respuesta     
+    - Es visible solo en el objeto creado a partir de la clase, pero 
+      solo puede ser llamado por otros métodos del objeto.     
+*/
