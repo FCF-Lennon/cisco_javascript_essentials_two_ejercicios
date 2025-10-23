@@ -265,6 +265,7 @@ console.log(Object.keys(point));
 */
 
 
+
 // Pregunta 12 - Falta una línea en el siguiente código:     
   
 /* 
@@ -381,20 +382,22 @@ console.log(`${eeuser instanceof User} ${eeuser instanceof EUser} ${eeuser insta
 
 // Pregunta 16 - Falta una línea en el siguiente código: 
  
-class A {
-    constructor(val) {
-        console.log(`A: ${val}`);
+/* 
+    class A {
+        constructor(val) {
+            console.log(`A: ${val}`);
+        }
     }
-}
 
-class B extends A {
-    constructor(val) {
-        // Inserta aquí la línea de código.
-        console.log(`B: ${val}`);
+    class B extends A {
+        constructor(val) {
+            // Inserta aquí la línea de código.
+            console.log(`B: ${val}`);
+        }
     }
-}
 
-let b = new B(10);
+    let b = new B(10); 
+*/
 
 // Selecciona la línea faltante correcta para que la ejecución del código 
 // muestre en consola lo siguiente: A:10, B:10 
@@ -424,3 +427,50 @@ let b = new B(10);
     - Es visible solo en el objeto creado a partir de la clase, pero 
       solo puede ser llamado por otros métodos del objeto.     
 */
+
+
+
+// Pregunta 18 - Has declarado la clase Test y creado un objeto test a 
+// partir de ella:  
+
+class Test {
+    static info() { return 'Test'; }
+}
+
+let test = new Test();
+
+// Selecciona la llamada correcta para que la ejecución del código 
+// muestre en la consola lo siguiente: Test
+
+/* 
+    Opciones: 
+    
+    - Test.info() / Respuesta
+    - test['static info']()          
+    - test.info()       
+    - Test.info      
+*/
+
+
+
+// Pregunta 19 - Analiza el siguiente código:
+ 
+function A() {};
+class B extends A {};
+let b = new B();
+console.log(`${b instanceof A} ${b instanceof B}`);
+
+// Como resultado de su ejecución: 
+
+/* 
+    Opciones: 
+    
+    - Aparecerá un error porque se intenta heredar en la clase B desde 
+      la función A y no desde otra clase. 
+    - Se mostrará false false, porque B al heredar de A también será 
+      una función.           
+    - Se mostrará true true, porque A será tratada como un constructor 
+      durante la herencia.  / Respuesta esta la explicas      
+    - Se mostrará false true, porque A no es una clase.      
+*/
+
