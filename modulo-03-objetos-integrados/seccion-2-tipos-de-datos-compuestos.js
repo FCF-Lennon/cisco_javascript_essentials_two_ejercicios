@@ -194,3 +194,150 @@ console.log(arrayFiltrado); // El arreglo original no cambia
     - some/every prueban condiciones.
     - filter crea un nuevo arreglo filtrado.
 */
+
+
+// Mapeo de elementos:
+
+/* 
+    El método map() crea un nuevo arreglo aplicando una función a cada 
+    elemento del arreglo original.
+    
+    Recibe una función como argumento con hasta tres parámetros:
+    
+    - item: el elemento actual del arreglo.
+        - index (opcional): la posición del elemento en el arreglo.
+        - array (opcional): el arreglo original completo.
+    
+    Devuelve un nuevo arreglo con los elementos transformados según la 
+    función.
+    Se suele combinar con filter() para operar solo sobre ciertos 
+    elementos.
+*/
+
+array1 = ["cat", 90, 80, 10, 20, 30, 100, 50, "dog"];
+let squarePower = array1
+    .filter(item => typeof item === "number") // filtra solo los números
+    .map(item => item * item); // eleva cada número al cuadrado
+console.log(squarePower); // -> [8100, 6400, 100, 400, 900, 10000, 2500]
+
+
+// Ordenamiento:
+
+/* 
+    El método sort() ordena los elementos de un arreglo en su lugar 
+    (modifica el arreglo original).
+    
+    Puede recibir una función de comparación con dos parámetros:
+    
+        - first: el primer elemento a comparar.
+        - second: el segundo elemento a comparar.
+    
+    La función debe devolver:
+        
+        - un número negativo si first debe preceder a second,
+        - 0 si son iguales en orden,
+        - un número positivo si first debe ir después de second.
+    
+        Si no se proporciona función, sort convierte los elementos a 
+        strings y los ordena alfabéticamente.
+*/
+
+let numbers = array1.filter(item => typeof item === "number");
+console.log(numbers[0]); // -> 90
+numbers.sort((first, second) => {
+    if (first < second) return -1;
+    else if (first === second) return 0;
+    else return 1;
+});
+console.log(numbers[0]); // -> 10
+
+// Versión simplificada usando una función de resta
+numbers.sort((first, second) => first - second);
+console.log(numbers); // -> [10, 20, 30, 50, 80, 90, 100]
+
+
+// Reducción de un arreglo:
+
+/* 
+    El método reduce() recorre un arreglo y acumula un valor según la 
+    función que recibe.
+    
+    La función reductora recibe:
+    
+        - accumulator: el valor acumulado hasta el momento.
+        - item: el elemento actual del arreglo.
+        - index (opcional): posición del elemento actual.
+        - array (opcional): el arreglo original.
+    
+    Opcionalmente, reduce() puede recibir un valor inicial. Devuelve el
+    valor final acumulado.
+*/
+
+let numbers2 = [10, 20, 30, 50, 80, 90, 100];
+let sum = numbers2.reduce((accumulator, item) => accumulator + item);
+console.log(sum); // -> 380
+
+// Uso de un valor inicial
+let anotherSum = numbers2.reduce((accumulator, item) => accumulator + item, 1000);
+console.log(anotherSum); // -> 1380
+
+// Convertir un arreglo en un objeto usando reduce
+let strangeObj = numbers2.reduce((accumulator, item, index) => {
+    accumulator[item] = index;
+    return accumulator;
+}, {});
+console.log(strangeObj); // -> {10: 0, 20: 1, 30: 2, 50: 3, 80: 4, 90: 5, 100: 6}
+
+
+// Invertir el orden de los elementos:
+
+/* 
+    El método reverse() invierte el orden de los elementos del arreglo 
+    original.
+    No recibe argumentos y devuelve el arreglo modificado en su lugar.
+*/
+
+let numbers3 = [10, 20, 30, 50, 80, 90, 100];
+console.log(numbers3[0]); // -> 10
+numbers3.reverse();
+console.log(numbers3[0]); // -> 100
+numbers3.reverse();
+console.log(numbers3[0]); // -> 10
+
+
+// Búsqueda de elementos:
+
+/* 
+    Métodos de búsqueda en arreglos:
+
+    - includes(value): devuelve true si el valor existe, false si no.
+    - indexOf(value): devuelve el índice del primer elemento que 
+      coincide, -1 si no encuentra.
+    - lastIndexOf(value): devuelve el índice del último elemento que 
+      coincide, -1 si no encuentra.
+    - find(función): devuelve el primer elemento que cumpla la condición
+      de la función, undefined si no hay.
+    - findIndex(función): devuelve el índice del primer elemento que 
+      cumpla la condición de la función, -1 si no hay.
+    
+    La función de prueba recibe: 
+
+        - item: elemento actual
+        - index (opcional): posición del elemento
+        - array (opcional): el arreglo completo
+*/
+
+let myPets = ["cat", "dog", "hamster", "canary", "shark", "cat", "dog"];
+console.log(myPets.includes("shark")); // -> true
+console.log(myPets.includes("unicorn")); // -> false
+console.log(myPets.indexOf("dog")); // -> 1
+console.log(myPets.lastIndexOf("dog")); // -> 6
+console.log(myPets.indexOf("unicorn")); // -> -1
+
+console.log(myPets.find(item => item.length > 3)); // -> hamster
+console.log(myPets.find(item => item.includes("og"))); // -> dog
+console.log(myPets.find(item => item.includes("fish"))); // -> undefined
+console.log(myPets.findIndex(item => item.length > 3)); // -> 2
+console.log(myPets.findIndex(item => item.includes("og"))); // -> 1
+console.log(myPets.findIndex(item => item.includes("fish"))); // -> -1
+
