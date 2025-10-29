@@ -341,3 +341,224 @@ console.log(myPets.findIndex(item => item.length > 3)); // -> 2
 console.log(myPets.findIndex(item => item.includes("og"))); // -> 1
 console.log(myPets.findIndex(item => item.includes("fish"))); // -> -1
 
+
+
+// Copiar una parte seleccionada del arreglo (slice):
+
+/* 
+    El método slice() crea una copia superficial de una parte del 
+    arreglo original.
+
+    Sintaxis:
+    array.slice(inicio, fin)
+
+    - inicio: índice desde donde comienza la copia.
+    - fin (opcional): índice donde termina (no incluido en la copia).
+
+    Si "inicio" es negativo, se cuenta desde el final.
+    Si se omite "fin", se copia hasta el final del arreglo.
+
+    El arreglo original NO se modifica.
+*/
+
+myPets = ["cat", "dog", "hamster", "canary", "shark", "cat", "dog"];
+
+let p1 = myPets.slice(3);       // ["canary", "shark", "cat", "dog"]
+let p2 = myPets.slice(3, 5);    // ["canary", "shark"]
+let p3 = myPets.slice(-3);      // ["shark", "cat", "dog"]
+let p4 = myPets.slice(-3, -1);  // ["shark", "cat"]
+
+// slice() devuelve una NUEVA lista sin alterar el arreglo original.
+
+
+// Eliminar o reemplazar partes del arreglo (splice):
+
+/* 
+    El método splice() modifica el arreglo original. 
+    
+    Puede usarse para:
+
+    - eliminar elementos
+    - insertar nuevos elementos
+    - o ambas cosas a la vez
+
+    Sintaxis:
+
+    array.splice(inicio, cantidad, elem1, elem2, ...)
+
+    - inicio: índice donde comienza la operación (acepta negativos).
+    - cantidad: número de elementos a eliminar.
+    - elem1, elem2, ...: nuevos elementos a insertar (opcional).
+
+    Retorna un arreglo con los elementos eliminados.
+*/
+
+myPets = ["cat", "dog", "hamster", "canary", "shark", "cat", "dog"];
+let removedPets = myPets.splice(2, 3);
+console.log(myPets);        // ["cat", "dog", "cat", "dog"]
+console.log(removedPets);   // ["hamster", "canary", "shark"]
+
+// Insertando nuevos elementos sin eliminar:
+myPets = ["cat", "dog", "hamster", "canary", "shark", "cat", "dog"];
+myPets.splice(2, 0, "rabbit", "guinea pig");
+console.log(myPets);
+// ["cat", "dog", "rabbit", "guinea pig", "hamster", "canary", "shark", "cat", "dog"]
+
+
+// Asignación por desestructuración (arrays):
+
+/* 
+    Permite extraer valores de un arreglo y asignarlos a variables 
+    de manera más concisa.
+
+    Sintaxis:
+    let [var1, var2, , var4] = arreglo;
+
+    Las posiciones vacías se saltan con comas. 
+    Se pueden asignar valores por defecto.
+*/
+
+myPets = ["cat", "dog", "hamster", "canary"];
+let [pet1, , pet3, pet4] = myPets;
+console.log(pet1); // "cat"
+console.log(pet3); // "hamster"
+
+// Si faltan elementos:
+myPets = ["cat", "dog"];
+let [a, , b] = myPets;
+console.log(b); // undefined
+
+// Con valores por defecto:
+let [x = "fish", , y = "fish"] = myPets;
+console.log(x); // "cat"
+console.log(y); // "fish"
+
+
+// Operador Spread en arreglos:
+
+/* 
+    El operador spread (...) expande un arreglo en elementos 
+    individuales.
+
+    Usos comunes:
+
+    - Crear nuevos arreglos a partir de otros.
+    - Pasar elementos como argumentos de una función.
+*/
+
+array1 = [100, 200, 300];
+array2 = [1000, 2000];
+array3 = [10, 20, ...array1, 500, ...array2];
+console.log(array3); // [10, 20, 100, 200, 300, 500, 1000, 2000]
+
+let testFn = (a, b, c, d) => a + b + c + d;
+let array = [10, 20, 30, 40];
+console.log(testFn(...array)); // 100
+
+
+// Colecciones Set:
+
+/* 
+    Set es una colección de valores ÚNICOS (sin duplicados).
+    El orden no es relevante y los elementos no tienen índices.
+
+    Cada elemento se considera tanto clave como valor.
+*/
+
+let emptySet = new Set();
+console.log(emptySet.size); // 0
+
+let petsSet = new Set(["cat", "dog", "cat"]);
+console.log(petsSet);       // {"cat", "dog"}
+console.log(petsSet.size);  // 2
+
+
+// Verificar la presencia de un elemento en Set:
+
+/* 
+    El método has() devuelve true si el valor existe en el Set.
+*/
+
+petsSet = new Set(["cat", "dog"]);
+console.log(petsSet.has("cat"));   // true
+console.log(petsSet.has("shark")); // false
+
+
+// Manipular elementos en un Set:
+
+/* 
+    Métodos principales:
+
+    - add(valor): agrega un elemento.
+    - delete(valor): elimina un elemento (retorna true/false).
+    - clear(): elimina todos los elementos.
+*/
+
+console.log(petsSet.size); // 2
+petsSet.add("shark");
+petsSet.add("hamster");
+console.log(petsSet.size); // 4
+console.log(petsSet.has("shark")); // true
+
+petsSet.delete("dog");
+console.log(petsSet.size); // 3
+
+petsSet.clear();
+console.log(petsSet.size); // 0
+
+
+// Recorrer los elementos de un Set:
+
+/* 
+   forEach():
+
+   Recorre todos los elementos y ejecuta una función por cada uno.
+*/
+
+petsSet = new Set(["cat", "dog", "hamster"]);
+petsSet.forEach(value => console.log(value));
+// cat -> dog -> hamster
+
+// También puede usarse con dos parámetros (valor, clave), pero ambos son iguales:
+petsSet.forEach((value, key) => console.log(`(${value}:${key})`));
+// (cat:cat) -> (dog:dog) -> (hamster:hamster)
+
+/*
+   values():
+
+   Devuelve un iterador que puede recorrerse manualmente.
+*/
+
+let petsIterator = petsSet.values();
+console.log(petsIterator.next().value); // cat
+console.log(petsIterator.next().value); // dog
+console.log(petsIterator.next().value); // hamster
+
+/*
+   Uso con bucle while:
+
+   Itera mientras done sea false.
+*/
+
+petsIterator = petsSet.values();
+let result = petsIterator.next();
+while (!result.done) {
+    console.log(result.value); // cat -> dog -> hamster
+    result = petsIterator.next();
+}
+
+// El método keys() existe pero funciona igual que values().
+
+
+// Operador Spread en Sets:
+
+/* 
+    Permite convertir un Set en un arreglo fácilmente.
+*/
+
+petsSet = new Set(["cat", "dog", "hamster"]);
+console.log(petsSet instanceof Set); // true
+
+let petsArray = [...petsSet];
+console.log(petsArray);              // ["cat", "dog", "hamster"]
+console.log(petsArray instanceof Array); // true
