@@ -562,3 +562,247 @@ console.log(petsSet instanceof Set); // true
 let petsArray = [...petsSet];
 console.log(petsArray);              // ["cat", "dog", "hamster"]
 console.log(petsArray instanceof Array); // true
+
+
+// Map:
+
+/* 
+    El constructor Map se usa para crear una colección de elementos
+    donde cada uno está compuesto por un par clave:valor.
+
+    A diferencia de un objeto común, Map permite usar cualquier 
+    tipo de dato como clave (no solo strings o símbolos).
+    Cada clave es única y su valor puede ser de cualquier tipo.
+
+    Si se intenta agregar una clave que ya existe, su valor se 
+    sobrescribe.
+    El orden de los elementos no afecta su funcionamiento.
+*/
+
+// Ejemplo de estructura de un Map:
+
+/*
+    Map {
+    clave1 => valor1,
+    clave2 => valor2,
+    clave3 => valor3
+    }
+*/
+
+
+// El constructor Map:
+
+/*
+    El constructor Map() crea una nueva instancia de mapa.
+
+    Parámetro opcional:
+    - iterable: un arreglo con pares [clave, valor].
+
+    Retorno:
+    - Devuelve un nuevo objeto Map.
+*/
+
+let emptyMap = new Map();
+let petsMap = new Map([
+  ["cats", 1],
+  ["dogs", 2],
+  ["hamsters", 5]
+]);
+
+console.log(emptyMap.size); // -> 0
+console.log(petsMap.size);  // -> 3
+
+/*
+    Explicación:
+    - "emptyMap" es un mapa vacío.
+    - "petsMap" contiene tres pares clave:valor.
+    - La propiedad size devuelve cuántos elementos hay en el mapa.
+*/
+
+
+// Comprobación de la presencia de un elemento:
+
+/*
+    El método has() permite verificar si una clave específica
+    existe en el mapa. Solo busca por la clave, no por el valor.
+
+    Parámetro:
+    - clave: la clave a buscar en el mapa.
+
+    Retorno:
+    - true si la clave existe, false si no.
+*/
+
+let animalsMap = new Map([
+  ["cats", 1],
+  ["dogs", 2],
+  ["hamsters", 5]
+]);
+
+console.log(animalsMap.has("dogs"));   // -> true
+console.log(animalsMap.has("sharks")); // -> false
+console.log(animalsMap.has(1));        // -> false
+
+/*
+    Explicación:
+
+    - has("dogs") devuelve true porque la clave existe.
+    - has("sharks") devuelve false porque no hay tiburones.
+    - has(1) devuelve false porque 1 es un valor, no una clave.
+*/
+
+
+// Manejo de elementos:
+
+/*
+    Podemos gestionar los elementos de un mapa usando los métodos:
+
+    1 set(clave, valor)
+    - Agrega un nuevo par clave:valor o actualiza uno existente.
+    - Parámetros: clave, valor.
+    - Retorna el propio mapa (permite encadenamiento).
+
+    2 get(clave)
+    - Obtiene el valor asociado a la clave.
+    - Parámetro: clave.
+    - Retorna el valor o undefined si no existe.
+
+    3 delete(clave)
+    - Elimina el elemento con esa clave.
+    - Parámetro: clave.
+    - Retorna true si se eliminó, false si no existe.
+
+    4 clear()
+    - Elimina todos los elementos del mapa.
+    - Parámetros: ninguno.
+    - No retorna nada (undefined).
+*/
+
+let petsCollection = new Map([
+  ["cats", 1],
+  ["dogs", 2],
+  ["hamsters", 5]
+]);
+
+console.log(petsCollection.get("hamsters")); // -> 5
+
+petsCollection.set("hamsters", 6);
+console.log(petsCollection.get("hamsters")); // -> 6
+
+petsCollection.delete("hamsters");
+console.log(petsCollection.get("hamsters")); // -> undefined
+
+petsCollection.clear();
+console.log(petsCollection.size); // -> 0
+
+/*
+    Explicación:
+    - get() obtiene valores asociados a las claves.
+    - set() modifica o agrega pares clave:valor.
+    - delete() elimina una clave específica.
+    - clear() vacía todo el mapa.
+*/
+
+
+// Recorrido de los elementos del mapa:
+
+/*
+    Podemos recorrer los elementos del mapa de varias formas:
+    forEach(), values(), keys() y entries().
+*/
+
+
+// forEach:
+
+/*
+    Ejecuta una función por cada elemento del mapa.
+
+    Parámetros:
+    - callback(valor, clave, mapa): función que se ejecuta por cada 
+      elemento.
+    - thisArg (opcional): valor a usar como "this" dentro del callback.
+
+    Retorno:
+    - No devuelve nada (undefined).
+*/
+
+let anotherPetsMap = new Map([
+  ["snakes", 1],
+  ["cats", 3],
+  ["dogs", 2]
+]);
+
+anotherPetsMap.forEach((value, key) => console.log(`${key} : ${value}`));
+// -> snakes : 1
+// -> cats : 3
+// -> dogs : 2
+
+
+// values:
+
+/*
+    El método values() devuelve un iterador que recorre solo los valores.
+
+    Parámetros:
+    - Ninguno.
+
+    Retorno:
+    - Un objeto iterador con los valores del mapa.
+*/
+
+let petValuesIterator = anotherPetsMap.values();
+console.log(petValuesIterator.next().value); // -> 1
+console.log(petValuesIterator.next().value); // -> 3
+console.log(petValuesIterator.next().value); // -> 2
+
+
+// keys:
+
+/*
+    El método keys() devuelve un iterador que recorre solo las claves.
+
+    Parámetros:
+    - Ninguno.
+
+    Retorno:
+    - Un objeto iterador con las claves del mapa.
+*/
+
+let petKeysIterator = anotherPetsMap.keys();
+console.log(petKeysIterator.next().value); // -> snakes
+console.log(petKeysIterator.next().value); // -> cats
+console.log(petKeysIterator.next().value); // -> dogs
+
+
+// entries:
+
+/*
+    El método entries() devuelve un iterador que recorre pares clave:valor
+    en forma de arreglos de dos elementos.
+
+    Parámetros:
+    - Ninguno.
+
+    Retorno:
+    - Un objeto iterador que devuelve arreglos [clave, valor].
+*/
+
+petsIterator = anotherPetsMap.entries();
+result = petsIterator.next();
+
+while (!result.done) {
+  console.log(result.value); 
+  // -> ["snakes", 1]
+  // -> ["cats", 3]
+  // -> ["dogs", 2]
+  result = petsIterator.next();
+}
+
+/*
+    Resumen:
+    - Map almacena pares clave:valor únicos.
+    - Las claves y valores pueden ser de cualquier tipo.
+    - Métodos útiles: set, get, has, delete, clear.
+    - Se puede recorrer con forEach o con iteradores (keys, values, 
+      entries).
+*/
