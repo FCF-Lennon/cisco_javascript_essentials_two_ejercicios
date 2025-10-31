@@ -806,3 +806,185 @@ while (!result.done) {
     - Se puede recorrer con forEach o con iteradores (keys, values, 
       entries).
 */
+
+
+// bucle for ... of:
+
+/*
+    El bucle for ... of fue creado en JavaScript para recorrer 
+    colecciones como arrays, sets y maps. Es un mecanismo universal e 
+    intuitivo que permite acceder directamente a los valores almacenados.
+*/
+
+petsArray = ["cat", "dog", "hamster"];
+for (let pet of petsArray) {
+    console.log(pet); // -> cat -> dog -> hamster
+};
+
+/*
+    En este ejemplo, for...of recorre un array e imprime cada elemento.
+*/
+
+petsSet = new Set(["cat", "dog", "hamster"]);
+for (let pet of petsSet) {
+    console.log(pet); // -> cat -> dog -> hamster
+};
+
+/*
+    El mismo comportamiento se aplica a los sets, ya que son iterables.
+*/
+
+petsMap = new Map([["cats", 1], ["dogs", 3], ["hamsters", 2]]);
+for (let pet of petsMap) {
+    console.log(pet); // -> ["cats", 1] -> ["dogs", 3] -> ["hamsters", 2]
+    console.log(pet[0]); // -> cats -> dogs -> hamsters
+};
+
+/*
+    En los maps, cada iteración devuelve un par [clave, valor].
+    Si se accede al índice [0], se obtiene la clave.
+*/
+
+
+// El operador spread en maps:
+
+/*
+    El operador spread (...) permite expandir un map en elementos 
+    individuales.
+    Puede usarse para convertir un map en un array fácilmente.
+*/
+
+let petsMap2 = new Map([["cats", 1], ["dogs", 3], ["hamsters", 2]]);
+console.log(petsMap2 instanceof Map); // -> true
+
+let petsArray2 = [...petsMap2]; // -> [["cats", 1], ["dogs", 3], ["hamsters", 2]]
+console.log(petsArray2 instanceof Array); // -> true
+
+/*
+    Este método es útil para manipular maps con operaciones de arrays.
+*/
+
+
+// El objeto Object:
+
+/*
+    El constructor Object y los objetos son estructuras fundamentales 
+    en JavaScript.
+    Pueden considerarse estructuras de datos compuestas, como arrays, 
+    sets y maps, diseñadas para almacenar colecciones de información 
+    en pares clave:valor.
+
+    Diferencias clave:
+    
+    - Array: elementos repetibles, identificados por índice (orden 
+      importante).
+    - Set: sin índices, no permite duplicados.
+    - Map: pares clave:valor únicos, las claves pueden ser de cualquier 
+      tipo.
+*/
+
+
+// Creación de un objeto:
+
+/*
+    Los objetos en JavaScript también almacenan pares clave:valor,
+    similar a los maps, pero con restricciones en los tipos de claves.
+    Podemos crearlos usando literales de objeto.
+*/
+
+let anotherPetsObj = {"snakes": 1, "cats": 3, "dogs": 2};
+
+/*
+    Cada propiedad tiene una clave (nombre) y un valor asociado.
+*/
+
+
+// Manejo de elementos en objetos:
+
+/*
+    Podemos acceder, modificar o eliminar propiedades
+    usando la notación de punto o de corchetes.
+*/
+
+console.log(anotherPetsObj.snakes); // -> 1
+
+anotherPetsObj.snakes = 2;
+console.log(anotherPetsObj.snakes); // -> 2
+
+delete anotherPetsObj.snakes;
+console.log(anotherPetsObj.snakes); // -> undefined
+
+anotherPetsObj.snakes = 0;
+console.log(anotherPetsObj.snakes); // -> 0
+
+/*
+    Resumen:
+    - obj.propiedad = valor → agrega o modifica.
+    - delete obj.propiedad → elimina.
+*/
+
+
+// Recorrido de elementos en objetos:
+
+/*
+    Para recorrer un objeto podemos usar los métodos estáticos:
+    - Object.keys(obj): devuelve un array con las claves.
+    - Object.values(obj): devuelve un array con los valores.
+    - Object.entries(obj): devuelve un array de pares [clave, valor].
+*/
+
+let anotherPetsObj2 = {"snakes": 1, "cats": 3, "dogs": 2};
+
+Object.keys(anotherPetsObj2).forEach(key => console.log(key)); 
+// -> snakes -> cats -> dogs
+
+Object.values(anotherPetsObj2).forEach(value => console.log(value)); 
+// -> 1 -> 3 -> 2
+
+Object.entries(anotherPetsObj2).forEach(entry => console.log(entry)); 
+// -> ["snakes", 1] -> ["cats", 3] -> ["dogs", 2]
+
+/*
+    Estos métodos devuelven arrays, por lo que podemos usar forEach 
+    u otros métodos de iteración.
+*/
+
+let anotherPetsObj3 = {"snakes": 1, "cats": 3, "dogs": 2};
+for (let key in anotherPetsObj3) {
+    console.log(key); // -> snakes -> cats -> dogs
+    console.log(anotherPetsObj3[key]); // -> 1 -> 3 -> 2
+};
+
+/*
+    for...in permite recorrer las claves de un objeto directamente.
+*/
+
+
+// El operador spread en objetos:
+
+/*
+    El operador spread (...) también funciona con objetos,
+    pero su propósito es copiar o combinar propiedades entre ellos.
+*/
+
+let petsObj = {"cats": 1, "dogs": 3, "hamsters": 2};
+let newPetsObj = {...petsObj, "sharks": 1}; 
+// -> {cats: 1, dogs: 3, hamsters: 2, sharks: 1}
+
+console.log(newPetsObj);
+
+/*
+    El operador spread permite crear copias de objetos o fusionarlos,
+    lo que es útil al manipular configuraciones o estructuras de datos.
+*/
+
+
+// Nota final:
+
+/*
+    El almacenamiento de datos en objetos es tan versátil que existe 
+    un formato estándar para su intercambio: JSON.
+    Este formato convierte objetos en texto, ideal para enviarlos por 
+    la red.
+    Se explicará con más detalle en la siguiente sección.
+*/
