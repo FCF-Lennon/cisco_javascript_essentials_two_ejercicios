@@ -136,3 +136,67 @@ try {
     console.log(err.message);
 }
 
+
+// Ejercicio 03 - Crea una clase llamada Users que permita crear objetos
+// que contengan una colección de usuarios individuales (los usuarios se
+// crean usando la clase User del desafío anterior).
+
+/* 
+    Para crear la colección, utiliza la clase Map (la clave debe ser la
+    dirección de correo electrónico, y el valor debe ser el objeto User).
+    
+    La clase debe proporcionar los siguientes métodos:
+    
+    - add - agrega un solo usuario; los argumentos son nombre, apellido y
+      correo electrónico.
+    - delete - elimina un usuario de la colección (el argumento es el correo
+      electrónico).
+    - get - recupera un solo usuario de la colección (el argumento es el correo
+      electrónico).
+    - getAll - recupera todos los usuarios de la colección (el argumento es el 
+      nombre del campo por el cual se debe ordenar el arreglo: name, surname o 
+      email).
+*/
+
+class Users {
+    constructor() {
+        this.usersMap = new Map();
+    }
+
+    add(name, surname, email) {
+        if (!this.usersMap.has(email)) {
+            const user = new User(name, surname, email);
+            this.usersMap.set(email, user);
+        }
+    }
+
+    delete(email) {
+        this.usersMap.delete(email);
+    }
+
+    get(email) {
+        return this.usersMap.get(email);
+    }
+
+    getAll(field) {
+        const validFields = ['name', 'surname', 'email'];
+        if (!validFields.includes(field)) {
+            throw new Error(`Invalid field: ${field}`);
+        }
+        const usersArray = Array.from(this.usersMap.values());
+        return usersArray.sort((a, b) => a[field].localeCompare(b[field]));
+    }
+}
+
+
+// Prueba tu solución usando el siguiente código:
+
+let users = new Users();
+users.add("Aaaa", "Bbbb", "cccc@gmail.com");
+users.add("Mmmm", "Ffff", "eeee@gmail.com");
+users.add("Aaaa", "Bbbb", "cccc@gmail.com");
+users.add("Xxxx", "Oooo", "dddd@gmail.com");
+console.log(users.get("dddd@gmail.com").mostrarInfo());
+console.log(users.getAll("name").map(u => u.name));
+console.log(users.getAll("surname").map(u => u.surname));
+console.log(users.getAll("email").map(u => u.email));
