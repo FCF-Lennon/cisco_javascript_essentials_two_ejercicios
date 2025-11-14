@@ -200,3 +200,135 @@ console.log(users.get("dddd@gmail.com").mostrarInfo());
 console.log(users.getAll("name").map(u => u.name));
 console.log(users.getAll("surname").map(u => u.surname));
 console.log(users.getAll("email").map(u => u.email));
+
+
+// Ejercicio 04 -  Define tres clases: Point, Line y Figure.
+
+/* 
+    - Point:
+        La clase Point debe tener solo tres propiedades:
+            - coordenada x
+            - coordenada y
+            - type (siempre con el valor 'point')
+        El constructor recibe las coordenadas x e y.
+
+    - Line:
+        La clase Line debe tener:
+            - type = 'line'
+            - points = un arreglo de objetos Point (los puntos que forman la línea)
+        El constructor recibe un arreglo de coordenadas de puntos,
+        por ejemplo: [[x1, y1], [x2, y2], ...]
+        Ejemplo: [[0, 0], [10, 20], [20, 20]]
+
+    - Figure:
+        Esta clase debe permitir crear un objeto que contenga
+        una colección de puntos y líneas (almacenados por separado).
+
+        Métodos a implementar:
+        
+        constructor(elements)
+            - Recibe un arreglo con puntos y líneas.
+
+        addPoint(x, y)
+            - Agrega un nuevo punto a la colección.
+
+        addLine([[x1, y1], [x2, y2], ...])
+            - Crea una nueva línea y la agrega a la colección.
+
+        toJSON()
+            - Devuelve la colección guardada (puntos y líneas) en formato JSON.
+
+        fromJSON(jsonData, appendFlag)
+            - Recibe datos en JSON, los convierte y los agrega a la colección.
+            - appendFlag:
+                  true  → Agregar a la colección existente.
+                  false → Reemplazar la colección actual.
+
+        deleteAll()
+            - Elimina todos los datos de la colección.
+
+    
+*/
+
+class Point {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.type = 'point';
+    }
+};
+
+class Line {
+    constructor(pointsArray) {
+        this.type = 'line0';
+        this.points = pointsArray.map(coord => new Point(coord[0], coord[1]));
+    }
+};
+
+class Figure {
+    constructor(elements = []) {
+        this.elements = {
+            points: [],
+            lines: []
+        };
+
+        elements.forEach(element => {
+            if (element.type === 'point') {
+                this.elements.points.push(new Point(element.x, element.y));
+            } else if (element.type === 'line') {
+                const linePoints = element.points.map(p => [p.x, p.y]);
+                this.elements.lines.push(new Line(linePoints));
+            }
+        });
+    }
+}
+
+Figure.prototype.addPoint = function(x, y) {
+    this.elements.points.push(new Point(x, y));
+};
+
+Figure.prototype.addLine = function(pointsArray) {
+    this.elements.lines.push(new Line(pointsArray));
+};
+
+Figure.prototype.toJSON = function() {
+    return JSON.stringify(this.elements);
+};
+
+Figure.prototype.fromJSON = function(jsonData, appenFlang) {
+    const data = typeof jsonData === 'string' ? JSON.parse(jsonData) : jsonData;
+
+    if (!appenFlang) {
+        this.deleteAll();
+    }
+    
+    data.points.forEach(pt => {
+        this.addPoint(pt.x, pt.y);
+    });
+
+    data.lines.forEach(ln => {
+        const linePoints = ln.points.map(p => [p.x, p.y]);
+        this.addLine(linePoints);
+    });
+};
+
+Figure.prototype.deleteAll = function() {
+    this.elements.points = [];
+    this.elements.lines = [];
+}
+
+
+// Prueba tu solución usando el siguiente código:
+
+let f = new Figure();
+f.addPoint(10,20);
+f.addPoint(10,10);
+f.addLine([[10,20], [30,40], [50,60]]);
+let json = f.toJSON();
+console.log(json);
+f.fromJSON(json, true);
+console.log(f.elements.points.length);
+console.log(f.elements.lines.length);
+f.fromJSON('{"points":[{"type":"point","x":10,"y":20},{"type":"point","x":10,"y":30},{"type":"point","x":10,"y":-30},{"type":"point","x":10,"y":20},{"type":"point","x":20,"y":20},{"type":"point","x":30,"y":20},{"type":"point","x":130,"y":20},{"type":"point","x":30,"y":20},{"type":"point","x":0,"y":20},{"type":"point","x":0,"y":-20},{"type":"point","x":0,"y":20}],"lines":[{"type":"line","points":[{"x":0,"y":0},{"x":10,"y":0},{"x":0,"y":10},{"x":20,"y":0},{"x":0,"y":20}]},{"type":"line","points":[{"x":30,"y":0},{"x":10,"y":0},{"x":0,"y":10},{"x":20,"y":0},{"x":0,"y":20}]},{"type":"line","points":[{"x":30,"y":0},{"x":10,"y":-10},{"x":0,"y":10},{"x":20,"y":0},{"x":0,"y":20}]},{"type":"line","points":[{"x":0,"y":0},{"x":10,"y":0},{"x":0,"y":10},{"x":20,"y":0},{"x":0,"y":20}]}]}');
+console.log(f.elements.points.length);
+console.log(f.elements.lines.length);
