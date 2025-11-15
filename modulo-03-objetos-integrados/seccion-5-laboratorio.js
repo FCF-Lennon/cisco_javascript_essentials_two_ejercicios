@@ -332,3 +332,58 @@ console.log(f.elements.lines.length);
 f.fromJSON('{"points":[{"type":"point","x":10,"y":20},{"type":"point","x":10,"y":30},{"type":"point","x":10,"y":-30},{"type":"point","x":10,"y":20},{"type":"point","x":20,"y":20},{"type":"point","x":30,"y":20},{"type":"point","x":130,"y":20},{"type":"point","x":30,"y":20},{"type":"point","x":0,"y":20},{"type":"point","x":0,"y":-20},{"type":"point","x":0,"y":20}],"lines":[{"type":"line","points":[{"x":0,"y":0},{"x":10,"y":0},{"x":0,"y":10},{"x":20,"y":0},{"x":0,"y":20}]},{"type":"line","points":[{"x":30,"y":0},{"x":10,"y":0},{"x":0,"y":10},{"x":20,"y":0},{"x":0,"y":20}]},{"type":"line","points":[{"x":30,"y":0},{"x":10,"y":-10},{"x":0,"y":10},{"x":20,"y":0},{"x":0,"y":20}]},{"type":"line","points":[{"x":0,"y":0},{"x":10,"y":0},{"x":0,"y":10},{"x":20,"y":0},{"x":0,"y":20}]}]}');
 console.log(f.elements.points.length);
 console.log(f.elements.lines.length);
+
+
+// Ejercicio 05 - Modifica la clase Figure del desafío anterior para que puedas ordenar 
+// los puntos y las líneas en la colección y eliminar automáticamente los elementos con 
+// los mismos valores (por ejemplo, líneas compuestas por los mismos puntos).
+
+Figure.prototype.sortAndUnique = function () {
+
+    // ---- ORDENAR Y LIMPIAR PUNTOS ----
+    this.elements.points.sort((a, b) => a.x - b.x || a.y - b.y);
+
+    this.elements.points = this.elements.points.filter((p, i, arr) =>
+        i === 0 || p.x !== arr[i - 1].x || p.y !== arr[i - 1].y
+    );
+
+    // ---- ORDENAR Y LIMPIAR LÍNEAS ----
+
+    // normaliza puntos dentro de la línea
+    this.elements.lines.forEach(line =>
+        line.points.sort((a, b) => a.x - b.x || a.y - b.y)
+    );
+
+    // genera firma de una línea
+    const signature = line =>
+        line.points.map(p => `${p.x},${p.y}`).join('|');
+
+    // ordenar líneas por firma
+    this.elements.lines.sort((a, b) =>
+        signature(a).localeCompare(signature(b))
+    );
+
+    // eliminar duplicados
+    this.elements.lines = this.elements.lines.filter((line, i, arr) =>
+        i === 0 || signature(line) !== signature(arr[i - 1])
+    );
+
+    return this;
+};
+   
+// Prueba tu solución usando el siguiente código:
+
+let f2 = new Figure();
+f2.addPoint(10,20);
+f2.addPoint(10,20);
+f2.addPoint(5,15);
+f2.addPoint(5,15);
+f2.addLine([[10,20], [30,40], [50,60]]);
+f2.addLine([[30,40], [10,20], [50,60]]);
+console.log('Antes de sortAndUnique:'); 
+console.log(f2.elements.points.length); // 4
+console.log(f2.elements.lines.length); // 2
+f2.sortAndUnique();
+console.log('Después de sortAndUnique:'); 
+console.log(f2.elements.points.length); // 2
+console.log(f2.elements.lines.length); // 1
