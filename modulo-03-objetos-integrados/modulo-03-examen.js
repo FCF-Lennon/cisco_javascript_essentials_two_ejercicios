@@ -18,7 +18,7 @@ console.log(`${Boolean(-1)} ${Boolean(0)}  ${String(0)}  ${String(1)} `);
 
 let str = 'sample string';
 // ...
-console.log(result);
+// console.log(result);
 
 // Selecciona la línea correcta que falta para que el código ejecutado
 // produzca la siguiente salida en consola: ['SAMPLE', 'STRING']
@@ -76,7 +76,7 @@ console.log(`${str.includes('s')} ${str.indexOf('s')} ${str.lastIndexOf('s')}`);
 
 // Pregunta 06 - Analiza el siguiente código:
 
-points = [{ x: 10, y: 20 }, { x: 0, y: 30 }, { x: 20, y: 100 }];
+let points = [{ x: 10, y: 20 }, { x: 0, y: 30 }, { x: 20, y: 100 }];
 let r1 = points.some(e => e.x === 0);
 let r2 = points.every(e => e.x === 0);
 
@@ -188,11 +188,110 @@ let x = [100, 101, 102, 103];
     - let result = x.reduce((e, p) => e + p, 1000); / Respuesta
 */
 
-let result = x.reduce((e, p) => e + p, 1000);
-
-console.log(result);
-
 // Explicación:
 // reduce() acumula los valores del arreglo.
 // Con acumulador inicial 1000:
 // 1000 + 100 + 101 + 102 + 103 = 1406.
+
+
+// Pregunta 11 - Falta una línea en el código a continuación:
+
+points = [{x: 10, y: 20}, {x: 0, y: 30}, {x: 20, y: 100}];
+// Insertar línea de código aquí.
+// console.log(result);
+
+
+// Selecciona la línea faltante correcta para que el código ejecutado 
+// resulte en la siguiente salida de consola: {x: 10, y: 20}
+
+/*
+    Opciones:
+
+    - let result = points.find(x > 0);
+    - let result = points.find(e => {e.x > 0 return e}); 
+    - let result = points.find({x: 10, y: 20});
+    - let result = points.find(e => e.x > 0); / Respuesta
+*/
+
+
+// Pregunta 12 - Falta una línea en el código a continuación:
+
+x = ['a', 'b', 'c', 'd', 'e'];
+// Insertar línea de código aquí.
+// console.log(result);
+
+
+// Selecciona la línea faltante correcta para que el código ejecutado resulte 
+// en la siguiente salida de consola: ['b', 'c', 'd']
+
+/*
+    Opciones:
+
+    - let y = x.slice(2, 4);
+    - let y = x.slice(1, -1); / Respuesta
+    - let y = x.slice(0, 2);
+    - let y = x.slice(-1, 1);
+*/
+
+
+// traduce con formato:
+
+// Pregunta 13 - Falta una línea en el código a continuación:
+
+x = ['a', 'b', 'c', 'd', 'e'];
+x.splice(2, 2);
+// Insertar línea de código aquí.
+// console.log(x);
+
+
+// Selecciona la línea faltante correcta para que el código ejecutado resulte 
+// en la siguiente salida de consola: ['a', 'b', 'x', 'y', 'e']
+
+/*
+    Opciones:
+
+    - x.splice(2, 2, 'x', 'y');
+    - x.splice(2, 'x', 'y');
+    - x.splice(2, 0, 'x', 'y'); / Respuesta
+    - x.splice(2, 0, 2, 'x', 'y');
+*/
+
+
+// Pregunta 14 - Falta una línea en el código a continuación:
+
+a = [1, 2, 30, 20];
+// Insertar línea de código aquí.
+// console.log(str);
+
+
+// Selecciona la línea faltante correcta para que el código ejecutado resulte 
+// en la siguiente salida de consola: 1 -> 2 -> 30 -> 20
+
+/*
+    Opciones:
+
+    - let str = a.toString();
+    - let str = String.join(a, ' ->); 
+    - let str = a.join();
+    - let str = a.join(' -> '); / Respuesta
+*/
+
+
+// Pregunta 15 - Analiza el siguiente código:
+
+let s = new Set([1, 2, '100']);
+s.add(2);
+s.add('2');
+console.log(`${s.has(2)} ${s.has('2')} ${s.size}`);
+
+// ¿Qué aparecerá en la consola como resultado de la ejecución del código?
+
+/*
+    Opciones:
+
+    - true true undefined;
+    - true true 4; / Respuesta
+    - true false 3;
+    - true false 4;
+*/
+
