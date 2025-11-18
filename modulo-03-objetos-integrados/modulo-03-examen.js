@@ -74,3 +74,125 @@ console.log(`${str.includes('s')} ${str.indexOf('s')} ${str.lastIndexOf('s')}`);
 */
 
 
+// Pregunta 06 - Analiza el siguiente código:
+
+points = [{ x: 10, y: 20 }, { x: 0, y: 30 }, { x: 20, y: 100 }];
+let r1 = points.some(e => e.x === 0);
+let r2 = points.every(e => e.x === 0);
+
+console.log(`${r1} ${r2}`);
+
+// ¿Qué aparecerá en la consola como resultado de la ejecución?
+
+/*
+    Opciones:
+
+    - true false / Respuesta
+    - {x: 0, y: 30} null
+    - {x: 0, y: 39} undefined
+    - 1 -1
+*/
+
+
+// Pregunta 07 - Falta una línea en el siguiente código:
+
+points = [
+    { x: 10, y: 20 },
+    { x: 0,  y: 30 },
+    { x: 20, y: 100 }
+];
+
+// Insertar la línea correcta aquí.
+// El resultado esperado en consola es:
+// [{x: 10, y: 20}, {x: 20, y: 100}]
+
+/*
+    Opciones:
+
+    - let result = points.filter(y > 0);
+    - let result = points.filter(e => e.y - e.x);
+    - let result = points.fliter(e => e.y > 0);
+    - let result = points.filter(e => e.y > 0 && e.x > 0); / Respuesta
+*/
+
+// Explicación:
+// Se requiere obtener los objetos donde x sea mayor que 0.
+
+
+// Pregunta 08 - Falta una línea en el siguiente código:
+
+points = [
+    { x: 10, y: 20 },
+    { x: 0,  y: 30 },
+    { x: 20, y: 100 }
+];
+
+// Insertar la línea correcta aquí.
+// Resultado esperado en consola:
+// [{x: 20, y: 100}, {x: 0, y: 30}, {x: 10, y: 20}]
+
+/*
+    Opciones:
+
+    - let result = points.sort((p1, p2) => p2.y - p1.y); / Respuesta
+    - let result = points.sort((p1, p2) => p1.y - p2.y);
+    - let result = points.sort((p1, p2) => p2.y - p1.y);
+    - let result = points.sort((p1, p2) => p2 - p1);
+*/
+
+// Explicación:
+// sort() ordena elementos según el valor retornado por la función de comparación.
+// Para ordenar de mayor a menor por la propiedad y se utiliza: p2.y - p1.y.
+
+
+// Pregunta 09 - Falta una línea en el siguiente código:
+
+points = [
+    { x: 10, y: 20 },
+    { x: 0,  y: 30 },
+    { x: 20, y: 100 }
+];
+
+// Insertar la línea correcta aquí.
+// Resultado esperado en consola:
+// [30, 30, 120]
+
+/*
+    Opciones:
+
+    - let result = points.map(e => {e.x + e.y}); 
+    - let result = points.map(e => e.x + e.y); / Respuesta
+    - let result = points.map(x + y);
+    - let result = points.map((e, n) => { n = e.x + e.y });
+*/
+
+// Explicación:
+// map() crea un nuevo arreglo aplicando una función a cada elemento.
+// En este caso, se requiere sumar x + y para cada objeto.
+
+
+// Pregunta 10 - Falta una línea en el siguiente código:
+
+let x = [100, 101, 102, 103];
+
+// Insertar la línea correcta aquí.
+// Resultado esperado en consola:
+// 1406
+
+/*
+    Opciones:
+
+    - let result = x.reduce((e, p) => e + 1000, p);
+    - let result = x.reduce(e => e + 1000);
+    - let result = x.reduce((e => e++, 1000);
+    - let result = x.reduce((e, p) => e + p, 1000); / Respuesta
+*/
+
+let result = x.reduce((e, p) => e + p, 1000);
+
+console.log(result);
+
+// Explicación:
+// reduce() acumula los valores del arreglo.
+// Con acumulador inicial 1000:
+// 1000 + 100 + 101 + 102 + 103 = 1406.
