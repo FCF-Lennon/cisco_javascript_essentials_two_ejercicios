@@ -295,3 +295,89 @@ console.log(`${s.has(2)} ${s.has('2')} ${s.size}`);
     - true false 4;
 */
 
+
+// Pregunta 16 - Analiza el siguiente código:
+
+s = new Set([1, 2, '100']);
+console.log(...s);
+
+
+// ¿Qué aparecerá en la consola como resultado de la ejecución?
+
+/*
+    Opciones:
+
+    - 1 2 '100' / Respuesta
+    - Uncaught SyntaxError: Unexpected token '...'
+    - 3
+    - 1
+*/
+
+
+// Pregunta 17 - Analiza el siguiente código:
+
+let m = new Map([[1, '11'], ['2', 22]]);
+m.set(3, '33');
+console.log(`${m.has(1)} ${m.has('1')} ${m.get(3)}`);
+
+
+// ¿Qué aparecerá en la consola como resultado de la ejecución del código?
+
+/*
+    Opciones:
+
+    - true false 3
+    - false false undefined
+    - false true undefined
+    - true false 33 / Respuesta
+*/
+
+
+// Pregunta 18 - Analiza el siguiente código:
+
+m = new Map([[1, '11'], ['2', 22]]);
+m.set(1, '11');
+m.set(1, '111');
+console.log(`${m.size}`);
+
+// ¿Qué aparecerá en la consola como resultado de la ejecución del código?
+
+/*
+    Opciones:
+
+    - 2 / Respuesta
+    - 4
+    - 3
+    - undefined
+*/
+
+
+// Pregunta 19 - Un objeto user puede convertirse a formato JSON usando el comando:
+
+/*
+    Opciones:
+
+    - user.toJSON();
+    - JSON.parse(user);
+    - JSON(user);
+    - JSON.stringify(user); / Respuesta
+*/
+
+
+// Pregunta 20 - Los siguientes datos están almacenados en formato JSON:
+
+let strPoint = '{ "x": 10, "y": 20}';
+
+// Selecciona el comando correcto para que los datos sean convertidos en un objeto
+// que será asignado a la variable point:
+
+/*
+    Opciones:
+
+    - let point = Object(strPoint);
+    - let point = JSON(strPoint);
+    - let point = JSON.stringify(strPoint);
+    - let point = JSON.parse(strPoint); / Respuesta
+*/
+
+
