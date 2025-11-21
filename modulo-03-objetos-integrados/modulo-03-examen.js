@@ -9,7 +9,7 @@ console.log(`${Boolean(-1)} ${Boolean(0)}  ${String(0)}  ${String(1)} `);
 
     - true false false true
     - false false 0 1
-    - false false underfined underfined
+    - false false underfined undefined
     - true false 0 1 / Respuesta
 */
 
@@ -111,7 +111,7 @@ points = [
 
     - let result = points.filter(y > 0);
     - let result = points.filter(e => e.y - e.x);
-    - let result = points.fliter(e => e.y > 0);
+    - let result = points.filter(e => e.y > 0);
     - let result = points.filter(e => e.y > 0 && e.x > 0); / Respuesta
 */
 
@@ -136,7 +136,7 @@ points = [
 
     - let result = points.sort((p1, p2) => p2.y - p1.y); / Respuesta
     - let result = points.sort((p1, p2) => p1.y - p2.y);
-    - let result = points.sort((p1, p2) => p2.y - p1.y);
+    - let result = points.sort((p1, p2) => p2.y > p1.y);
     - let result = points.sort((p1, p2) => p2 - p1);
 */
 
@@ -259,7 +259,7 @@ x.splice(2, 2);
 
 // Pregunta 14 - Falta una línea en el código a continuación:
 
-a = [1, 2, 30, 20];
+// a = [1, 2, 30, 20];
 // Insertar línea de código aquí.
 // console.log(str);
 
@@ -271,7 +271,7 @@ a = [1, 2, 30, 20];
     Opciones:
 
     - let str = a.toString();
-    - let str = String.join(a, ' ->); 
+    - let str = String.join(a, ' ->'); 
     - let str = a.join();
     - let str = a.join(' -> '); / Respuesta
 */
@@ -378,6 +378,80 @@ let strPoint = '{ "x": 10, "y": 20}';
     - let point = JSON(strPoint);
     - let point = JSON.stringify(strPoint);
     - let point = JSON.parse(strPoint); / Respuesta
+*/
+
+
+// Questions 21 - Has creado un objeto de la clase RegExp que quieres usar
+// para buscar mediante expresiones regulares:
+
+let r = new RegExp('.\.js');
+console.log(r)
+
+// Selecciona la forma alternativa correcta de esta declaración:
+
+/*
+    Options:
+
+    - let r = RegExp('.\js');
+    - let r = /'.\.js'/; Respuesta
+    - let r = \'.\.js'\;
+    - let r = ('.\.js'); 
+*/
+
+
+// Questions 22 - Usando una expresión regular, quieres verificar si una cadena
+// de caracteres termina con la secuencia .js. ¿Cuál de las siguientes expresiones
+// regulares puede utilizarse para esto?
+
+/*
+    Options:
+
+    - /.js/
+    - /*.js/
+    - /\.js$/ / Respuesta
+    - /\.js/
+*/
+
+
+// Questions 23 - Analiza el siguiente código:
+
+console.log(`${Math.floor(5.7)} ${Math.ceil(5.2)} ${Math.round(5.5)}`)
+
+// ¿Qué aparecerá en la consola como resultado de la ejecución del código?
+
+/*
+    Options:
+
+    - 5 6 6 / Respuesta
+    - 5 5 5
+    - 5 6 5
+    - 5 5 6 
+*/
+
+
+// Pregunta 24 - Analiza el siguiente código en el cual intentas extender
+// el prototipo de la clase Array con un nuevo método test:
+
+let a = [1,2];
+Array.prototype.test = function(){
+    console.log('test');
+}
+let b = [3,4];
+a.test();
+b.test();
+
+// ¿Qué aparecerá en la consola como resultado de la ejecución del código?
+
+/*
+    Opciones:
+
+    - Aparecerá un error al intentar ejecutar a.test(), porque el método
+      fue agregado después de la creación del objeto array a.
+    - Aparecerán dos mensajes 'test' en la consola. / Respuesta
+    - Aparecerá un solo mensaje 'test' en la consola (el objeto a no tiene
+      el método test).
+    - Aparecerá un error, porque el método test está ligado a la clase Array
+      y no a los objetos creados a partir de ella (los objetos a y b no tienen el método test).
 */
 
 
