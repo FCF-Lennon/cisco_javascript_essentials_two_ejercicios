@@ -64,3 +64,47 @@ console.log(iterable.has(2)); // -> true
 console.log(iterable.has(3)); // -> false
 console.log(...iterable); // -> 2 5
 
+
+
+// Ejercicio 02 - Escribe un decorador llamado myDecorator que almacene
+// los argumentos de cada llamada a la función decorada.
+
+/*
+    Si la función ya ha sido llamada anteriormente con esos mismos
+    argumentos, deberá mostrarse un mensaje apropiado en la consola
+    que contenga, entre otras cosas, los valores de dichos argumentos.
+
+    Nota - La función puede ser llamada con cualquier cantidad de
+    argumentos, por lo que debes utilizar argumentos rest para este 
+    propósito.
+*/
+
+function myDecorator (fn) {
+   
+    let calledArgs = new Set(); 
+    return function(...args) {
+        let argsKey = JSON.stringify(args);
+        if (calledArgs.has(argsKey)) {
+            console.log(`-> arguments already used: ${args.join(', ')}`);
+        } else {      
+            calledArgs.add(argsKey);
+            return fn(...args);
+        }
+    }
+}
+
+// Prueba el decorador utilizando el siguiente código:
+
+let sum = function(...args) {
+    let retVal = 0;
+    for( let arg of args) {
+        retVal += arg;
+    }
+    return retVal;
+}
+
+let dfn = myDecorator(sum);
+dfn(2, 3, 4);
+dfn(4, 5);
+dfn(2, 3, 4); // -> arguments already used: 2, 3, 4
+dfn(4, 5); // -> arguments already used: 4, 5
